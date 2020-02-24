@@ -1,0 +1,33 @@
+language: cpp
+
+git:
+  depth: 1
+  
+sudo: required
+services:
+  - docker
+
+addons:
+  artifacts:
+    paths:
+      - cppcheck-report
+
+env:
+  global:
+    - _C=build
+    - WORKDIR=/spelunky
+    - IMAGE=facthunder/cppcheck
+    - INCLUDES="-Ivendor/glad/glad_opengl_1.3/include -Ivendor/glad/glad_opengl_es_1.0/include -Ivendor/glm -Ivendor/logger/interface -Ivendor/stb/include"
+
+before_install:
+  - docker pull $IMAGE
+  - docker run -it -d --volume `pwd`:$WORKDIR --name $_C $IMAGE /bin/sh
+
+script:
+  - docker exec -w $WORKDIR $_C cppcheck src --enable=all --inconclusive --output-file=report.xml --force --xml $INCLUDES
+
+after_script:
+  - docker exec -w $WORKDIR $_C cppcheck-htmlreport --file=report.xml --title=SpelunkyPSP --report-dir=output
+
+deploy:
+  - docker cp $_C:$WORKDIR/output cppcheck-report:-
