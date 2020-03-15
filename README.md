@@ -1,5 +1,7 @@
 ## Spelunky® remake for the Sony PSP.
 
+[![`Build status`](https://travis-ci.org/Bedzior/spelunky-psp.svg?branch=feature/travis-build)](https://travis-ci.org/Bedzior/spelunky-psp)
+
 ### How?
 
 Original Spelunky classic was written using GameMaker, properietary tool for creating games. License, under
