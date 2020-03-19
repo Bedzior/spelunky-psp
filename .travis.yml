@@ -36,6 +36,7 @@ jobs:
 deploy:
   provider: releases
   token: $GITHUB_TOKEN
+  file_glob: true
   file: install/Spelunky*
   skip_cleanup: true
   on:
