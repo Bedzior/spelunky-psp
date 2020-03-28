@@ -11,16 +11,26 @@ jobs:
       with:
         depth: 1
         submodules: 'recursive'
+    - name: Configure CMake
+      uses: lukka/run-cmake@v0.11
+      with:
+        cmakeAppendedArgs: -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -Wno-dev
+        cmakeListsOrSettingsJson: CMakeListsTxtAdvanced
+        cmakeBuildType: Release
+        cmakeGenerator: UnixMakefiles
+        buildDirectory: report
+        buildWithCMake: false
     - name: Run Cppcheck
-      uses: Bedzior/cppcheck-action@v1.0.0
+      id: run-cppcheck
+      uses: Bedzior/cppcheck-action@v1.x
       with:
         enabled checks: all
         enable inconclusive: true
-        include directories: '-Ivendor/glad/glad_opengl_1.3/include -Ivendor/glad/glad_opengl_es_1.0/include -Ivendor/glm -Ivendor/logger/interface -Ivendor/stb/include'
         generate report: true
-        path: src
+        project: report/compile_commands.json
+        exclude from check: -i${{ github.workspace }}/tools -i${{ github.workspace }}/vendor
     - name: Upload report
       uses: actions/upload-artifact@v1
       with:
         name: report
-        path: output
+        path: ${{ steps.run-cppcheck.outputs.htmlReportPath }}
