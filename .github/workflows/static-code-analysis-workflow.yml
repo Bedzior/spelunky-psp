@@ -24,11 +24,12 @@ jobs:
       id: run-cppcheck
       uses: Bedzior/cppcheck-action@v1.x
       with:
+        debug: true
         enabled checks: all
         enable inconclusive: true
         generate report: true
         project: report/compile_commands.json
-        exclude from check: -i${{ github.workspace }}/tools -i${{ github.workspace }}/vendor
+        exclude from check: -i${{ github.workspace }}/tools -i${{ github.workspace }}/vendor -itools -ivendor
     - name: Upload report
       uses: actions/upload-artifact@v1
       with:
