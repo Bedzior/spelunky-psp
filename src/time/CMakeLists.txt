@@ -6,6 +6,7 @@ add_library(Time STATIC
 )
 
 target_include_directories(Time
+        PUBLIC ${SDL_INCLUDE_DIR}
         PRIVATE include interface
         INTERFACE interface
 )

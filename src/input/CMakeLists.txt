@@ -5,10 +5,11 @@ add_library(Input STATIC
         interface/Input.hpp
         $<IF:$<BOOL:${SPELUNKY_PSP_PLATFORM_PSP}>,src/Input_PSP.cpp,>
         $<IF:$<BOOL:${SPELUNKY_PSP_PLATFORM_LINUX}>,src/Input_Linux.cpp,>
+        $<IF:$<BOOL:${SPELUNKY_PSP_PLATFORM_WINDOWS}>,src/Input_Linux.cpp,>
 )
 
 target_include_directories(Input
-        PRIVATE include interface
+        PRIVATE include interface ${SDL_INCLUDE_DIR}
         INTERFACE interface
 )
 
