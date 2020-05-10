@@ -2,17 +2,20 @@
 param (
     [Parameter()][String]
     $Version="1.2.15",
-
+    
     [Parameter()][String]
     $DepsDirectory="deps"
 )
-Push-Location ..
+
+$ErrorActionPreference = "Stop"
+
 Try {
     Invoke-WebRequest -Uri "https://www.libsdl.org/release/SDL-devel-$Version-VC.zip" -OutFile "SDL.zip"
     
     Add-Type -AssemblyName System.IO.Compression.FileSystem
-    
-    Remove-Item "$DepsDirectory\SDL*" -Recurse -Force
+    If (Test-Path $DepsDirectory) {
+        Remove-Item "$DepsDirectory\SDL*" -Recurse -Force
+    } 
 
     [System.IO.Compression.ZipFile]::ExtractToDirectory("SDL.zip", "$DepsDirectory\")
     
@@ -26,5 +29,4 @@ Catch {
 }
 Finally {
     Remove-Item -path "SDL.zip"
-    Pop-Location
 }
