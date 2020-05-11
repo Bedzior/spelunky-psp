@@ -27,6 +27,8 @@ install:
   - mkdir -p install
 
 jobs:
+  exclude:
+    - stage: test
   include:
   - stage: build
     os: linux
