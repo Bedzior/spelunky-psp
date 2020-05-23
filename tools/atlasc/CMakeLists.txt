@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.1)
-project(atlasc)
+project(atlasc C)
 
 option(STATIC_LIB "Build atlasc as static-library instead of command-line tool" OFF)
 
