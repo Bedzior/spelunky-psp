@@ -9,7 +9,19 @@ spelunky_psp_detect_platform()
 spelunky_psp_add_platform_dependencies()
 
 if (WITH_DEV_TOOLS)
+    # Tools meant to be run only on host (development) system.
     add_subdirectory(tools)
+    spelunky_psp_compile_resources(
+        TARGET
+            test_resources_target
+        RESOURCE
+            ${CMAKE_CURRENT_SOURCE_DIR}/assets/metadata/icon.png
+        DESTINATION
+            ${CMAKE_CURRENT_SOURCE_DIR}
+    )
+    if (NOT TARGET test_resources_target)
+        message(FATAL_ERROR ":(")
+    endif()
 endif()
 
 set(ASSETS_PATH ${CMAKE_CURRENT_SOURCE_DIR}/assets)
