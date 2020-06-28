@@ -24,6 +24,7 @@ MainDudeBaseState *MainDudeCliffHangingState::handle_input(MainDude& main_dude, 
     if (input.circle())
     {
         main_dude._physics.add_velocity(0.0f, -MainDude::JUMP_SPEED);
+        main_dude._physics.add_x_position(main_dude._other.facing_left ? 0.1f : -0.1f);
         main_dude._physics.enable_gravity();
         return &main_dude._states.jumping;
     }

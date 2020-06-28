@@ -14,6 +14,7 @@ public:
     void set_position(float x, float y) { _position.x = x; _position.y = y;}
     float get_x_position() const { return _position.x; }
     float get_y_position() const { return _position.y; }
+    void add_x_position(float x) { _position.x += x; }
 
     float get_width() const { return _dimensions.width; }
     float get_height() const { return _dimensions.height; }
