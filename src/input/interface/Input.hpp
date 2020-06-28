@@ -19,6 +19,15 @@ public:
 
     inline bool square() const { return _square; }
     inline bool circle() const { return _circle; }
+    bool circle_once() const
+    {
+        if (_circle_once)
+        {
+            _circle_once = false;
+            return _circle;
+        }
+        return false;
+    }
     inline bool triangle() const { return _triangle; }
     inline bool cross() const { return _cross; }
 
@@ -36,6 +45,7 @@ private:
 
     bool _square = false;
     bool _circle = false;
+    mutable bool _circle_once = false;
     bool _triangle = false;
     bool _cross = false;
 

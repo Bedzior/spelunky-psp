@@ -48,6 +48,7 @@ void Input::poll()
             else if (key == SDLK_d)
             {
                 _circle = v;
+                _circle_once = v;
             }
             else if (key == SDLK_s)
             {

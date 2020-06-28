@@ -45,7 +45,7 @@ MainDudeBaseState *MainDudeLookingUpState::handle_input(MainDude& main_dude, con
     {
         main_dude._physics.add_velocity(MainDude::DEFAULT_DELTA_X, 0.0f);
     }
-    if (input.circle())
+    if (input.circle_once())
     {
         main_dude._physics.add_velocity(0.0f, -MainDude::JUMP_SPEED);
         return &main_dude._states.jumping;
