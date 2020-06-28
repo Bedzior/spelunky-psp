@@ -90,4 +90,12 @@ enum class MainDudeSpritesheetFrames : uint16_t
     RUNNING_LOOKING_UP_3,
     RUNNING_LOOKING_UP_4,
     RUNNING_LOOKING_UP_5_LAST,
+
+    BALANCING_0_FIRST,
+    BALANCING_1,
+    BALANCING_2,
+    BALANCING_3,
+    BALANCING_4,
+    BALANCING_5,
+    BALANCING_6_LAST,
 };

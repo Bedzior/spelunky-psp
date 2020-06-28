@@ -25,6 +25,7 @@
 #include "main-dude/states/MainDudeCliffHangingState.hpp"
 #include "main-dude/states/MainDudeLookingUpState.hpp"
 #include "main-dude/states/MainDudeRunningLookingUpState.hpp"
+#include "main-dude/states/MainDudeBalancingState.hpp"
 
 #include <vector>
 
@@ -73,6 +74,7 @@ private:
     friend class MainDudeCliffHangingState;
     friend class MainDudeLookingUpState;
     friend class MainDudeRunningLookingUpState;
+    friend class MainDudeBalancingState;
     struct
     {
         MainDudeBaseState* current = nullptr;
@@ -89,6 +91,7 @@ private:
         MainDudeCliffHangingState cliff_hanging;
         MainDudeLookingUpState looking_up;
         MainDudeRunningLookingUpState running_looking_up;
+        MainDudeBalancingState running_looking_up;
         MainDudeLevelSummaryState level_summary;
     } _states;
 
