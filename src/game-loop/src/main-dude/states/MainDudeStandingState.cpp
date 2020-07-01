@@ -1,6 +1,7 @@
 #include <main-dude/MainDude.hpp>
 #include "main-dude/states/MainDudeStandingState.hpp"
-#include "main-dude/MainDude.hpp"
+#include "LevelGenerator.hpp"
+#include "Collisions.hpp"
 #include "Input.hpp"
 #include "logger/log.h"
 
@@ -46,6 +47,16 @@ MainDudeBaseState *MainDudeStandingState::update(MainDude& main_dude, uint32_t d
     else
     {
         _x_collision_timer = 0;
+    }
+
+    MapTile* neighbours[9] = {nullptr};
+    collisions::get_neighbouring_tiles(LevelGenerator::instance().getLevel(), main_dude._physics.get_x_position(), main_dude._physics.get_y_position(), neighbours);
+
+    const auto* non_collidable_bottom_overlap = collisions::overlaps(neighbours, main_dude._physics.get_x_position(), main_dude._physics.get_y_position(), main_dude._physics.get_width(), main_dude._physics.get_height(), false);
+
+    if (non_collidable_bottom_overlap)
+    {
+        return &main_dude._states.balancing;
     }
 
     return this;

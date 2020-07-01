@@ -91,7 +91,7 @@ private:
         MainDudeCliffHangingState cliff_hanging;
         MainDudeLookingUpState looking_up;
         MainDudeRunningLookingUpState running_looking_up;
-        MainDudeBalancingState running_looking_up;
+        MainDudeBalancingState balancing;
         MainDudeLevelSummaryState level_summary;
     } _states;
 
