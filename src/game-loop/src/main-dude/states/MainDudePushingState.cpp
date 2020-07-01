@@ -4,9 +4,18 @@
 
 void MainDudePushingState::enter(MainDude& main_dude)
 {
-    main_dude._animation.start(static_cast<std::size_t>(MainDudeSpritesheetFrames::PUSH_LEFT_0_FIRST),
-                               static_cast<std::size_t>(MainDudeSpritesheetFrames::PUSH_LEFT_6_LAST),
-                               75, true);
+    std::vector<AnimationStep> animation_steps{
+        AnimationStep{static_cast<std::size_t>(MainDudeSpritesheetFrames::RUN_LEFT_0_FIRST),
+         static_cast<std::size_t>(MainDudeSpritesheetFrames::RUN_LEFT_5_LAST),
+         75, false},
+        AnimationStep{static_cast<std::size_t>(MainDudeSpritesheetFrames::RUN_LEFT_0_FIRST),
+         static_cast<std::size_t>(MainDudeSpritesheetFrames::RUN_LEFT_5_LAST),
+         75, false},
+        AnimationStep{static_cast<std::size_t>(MainDudeSpritesheetFrames::PUSH_LEFT_0_FIRST),
+         static_cast<std::size_t>(MainDudeSpritesheetFrames::PUSH_LEFT_6_LAST),
+         75, true}
+    };
+    main_dude._animation.start(animation_steps);
 }
 
 MainDudeBaseState* MainDudePushingState::update(MainDude& main_dude, uint32_t delta_time_ms)
@@ -16,7 +25,7 @@ MainDudeBaseState* MainDudePushingState::update(MainDude& main_dude, uint32_t de
     main_dude._physics.update(main_dude, delta_time_ms);
     main_dude._quad.update(main_dude.get_x_pos_center(), main_dude.get_y_pos_center(), !main_dude._other.facing_left);
     main_dude._animation.update(main_dude, delta_time_ms);
-
+    
     // Other:
 
     if (!main_dude._physics.is_left_collision() && !main_dude._physics.is_right_collision())

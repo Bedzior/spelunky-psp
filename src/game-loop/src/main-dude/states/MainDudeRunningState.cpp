@@ -7,12 +7,12 @@ void MainDudeRunningState::enter(MainDude &main_dude)
     main_dude._physics.set_max_x_velocity(MainDude::DEFAULT_MAX_X_VELOCITY);
     if (main_dude._states.current == &main_dude._states.running_looking_up)
     {
-        main_dude._animation.resume(static_cast<std::size_t>(MainDudeSpritesheetFrames::RUN_LEFT_0_FIRST),
+        _animation_step = main_dude._animation.resume(static_cast<std::size_t>(MainDudeSpritesheetFrames::RUN_LEFT_0_FIRST),
                                     static_cast<std::size_t>(MainDudeSpritesheetFrames::RUN_LEFT_5_LAST));
     }
     else
     {
-        main_dude._animation.start(static_cast<std::size_t>(MainDudeSpritesheetFrames::RUN_LEFT_0_FIRST),
+        _animation_step = main_dude._animation.start(static_cast<std::size_t>(MainDudeSpritesheetFrames::RUN_LEFT_0_FIRST),
                                    static_cast<std::size_t>(MainDudeSpritesheetFrames::RUN_LEFT_5_LAST),
                                    75, true);
     }
@@ -68,12 +68,12 @@ MainDudeBaseState *MainDudeRunningState::handle_input(MainDude& main_dude, const
     if (input.bumper_l())
     {
         main_dude._physics.set_max_x_velocity(MainDude::MAX_RUNNING_VELOCITY_X);
-        main_dude._animation.set_time_per_frame_ms(50);
+        _animation_step->set_time_per_frame_ms(50);
     }
     else
     {
         main_dude._physics.set_max_x_velocity(MainDude::DEFAULT_MAX_X_VELOCITY);
-        main_dude._animation.set_time_per_frame_ms(75);
+        _animation_step->set_time_per_frame_ms(75);
     }
 
     if (input.bumper_r())

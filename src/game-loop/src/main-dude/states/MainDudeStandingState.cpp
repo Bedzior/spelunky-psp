@@ -6,7 +6,6 @@
 
 void MainDudeStandingState::enter(MainDude& main_dude)
 {
-    _x_collision_timer = 0;
     main_dude._animation.stop();
     main_dude._quad.frame_changed(MainDudeSpritesheetFrames::STAND_LEFT);
 }
@@ -36,16 +35,7 @@ MainDudeBaseState *MainDudeStandingState::update(MainDude& main_dude, uint32_t d
 
     if (main_dude._physics.is_left_collision() || main_dude._physics.is_right_collision())
     {
-        _x_collision_timer += delta_time_ms;
-        if (_x_collision_timer > 400)
-        {
-            _x_collision_timer = 0;
-            return &main_dude._states.pushing;
-        }
-    }
-    else
-    {
-        _x_collision_timer = 0;
+        return &main_dude._states.pushing;
     }
 
     return this;
