@@ -4,6 +4,7 @@
 
 void MainDudeRunningState::enter(MainDude &main_dude)
 {
+    _x_collision_timer = 0;
     main_dude._physics.set_max_x_velocity(MainDude::DEFAULT_MAX_X_VELOCITY);
     if (main_dude._states.current == &main_dude._states.running_looking_up)
     {
@@ -28,9 +29,22 @@ MainDudeBaseState *MainDudeRunningState::update(MainDude& main_dude, uint32_t de
 
     // Other:
     
-    if (main_dude._physics.get_x_velocity() == 0.0f)
+    if (main_dude._physics.is_left_collision() || main_dude._physics.is_right_collision())
     {
-        return &main_dude._states.standing;
+        _x_collision_timer += delta_time_ms;
+        if (_x_collision_timer > 400)
+        {
+            _x_collision_timer = 0;
+            return &main_dude._states.pushing;
+        }
+    }
+    else
+    {
+        if (main_dude._physics.get_x_velocity() == 0.0f)
+        {
+            return &main_dude._states.standing;
+        }
+        _x_collision_timer = 0;
     }
 
     if (main_dude._physics.get_y_velocity() > 0.0f)
