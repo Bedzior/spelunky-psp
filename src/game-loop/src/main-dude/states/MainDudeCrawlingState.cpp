@@ -20,7 +20,9 @@ MainDudeBaseState* MainDudeCrawlingState::update(MainDude& main_dude, uint32_t d
 
     // Other:
 
-    if (main_dude._physics.get_x_velocity() == 0.0f)
+    if (main_dude._physics.get_x_velocity() == 0.0f
+        && !main_dude._physics.is_left_collision()
+        && !main_dude._physics.is_right_collision())
     {
         return &main_dude._states.ducking;
     }
