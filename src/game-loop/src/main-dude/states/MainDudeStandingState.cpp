@@ -51,11 +51,11 @@ MainDudeBaseState *MainDudeStandingState::update(MainDude& main_dude, uint32_t d
     }
 
     MapTile* neighbours[9] = {nullptr};
-    collisions::get_neighbouring_tiles(LevelGenerator::instance().getLevel(), main_dude._physics.get_x_position(), main_dude._physics.get_y_position(), neighbours);
+    collisions::get_neighbouring_tiles(LevelGenerator::instance().getLevel(), main_dude._physics.get_x_position(), main_dude._physics.get_y_position()-0.5f, neighbours);
 
-    const auto* non_collidable_bottom_overlap = collisions::overlaps(neighbours, main_dude._physics.get_x_position(), main_dude._physics.get_y_position(), main_dude._physics.get_width(), main_dude._physics.get_height(), false);
+    const auto* bottom = neighbours[static_cast<int>(collisions::NeighbouringTiles::DOWN_MIDDLE)];
 
-    if (non_collidable_bottom_overlap)
+    if (!bottom)
     {
         return &main_dude._states.balancing;
     }
