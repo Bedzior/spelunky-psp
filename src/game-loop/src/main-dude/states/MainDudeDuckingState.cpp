@@ -5,6 +5,7 @@
 void MainDudeDuckingState::enter(MainDude& main_dude)
 {
     main_dude._animation.stop();
+    main_dude._quad.set_scale(1.f, 1.f);
     main_dude._quad.frame_changed(MainDudeSpritesheetFrames::CRAWLING_LEFT_0_FIRST);
 }
 

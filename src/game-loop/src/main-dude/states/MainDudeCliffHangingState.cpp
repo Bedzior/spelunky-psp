@@ -7,6 +7,7 @@ void MainDudeCliffHangingState::enter(MainDude& main_dude)
 {
     main_dude._physics.set_velocity(0.0f, 0.0f);
     main_dude._physics.disable_gravity();
+    main_dude._quad.set_scale(1.f, 1.f);
     main_dude._quad.frame_changed(MainDudeSpritesheetFrames::HANGING_LEFT);
 }
 

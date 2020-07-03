@@ -3,6 +3,10 @@
 
 void AnimationComponent::update(MainDude& main_dude, uint32_t delta_time_ms)
 {
+    if (main_dude._quad.get_current_frame<MainDudeSpritesheetFrames>() != static_cast<MainDudeSpritesheetFrames>(_current_frame_index))
+    {
+        main_dude._quad.frame_changed(_current_frame_index);
+    }
     if (!_running)
     {
         return;

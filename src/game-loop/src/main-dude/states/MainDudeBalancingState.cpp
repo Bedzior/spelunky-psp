@@ -8,6 +8,8 @@
 
 void MainDudeBalancingState::enter(MainDude& main_dude)
 {
+    main_dude._quad.set_scale(1.5f, 1.5f);
+    main_dude._quad.frame_changed(MainDudeSpritesheetFrames::BALANCING_0_FIRST);
     main_dude._animation.start(static_cast<std::size_t>(MainDudeSpritesheetFrames::BALANCING_0_FIRST),
                                static_cast<std::size_t>(MainDudeSpritesheetFrames::BALANCING_6_LAST),
                                75, true);
@@ -18,7 +20,7 @@ MainDudeBaseState* MainDudeBalancingState::update(MainDude& main_dude, uint32_t 
     // Update components:
 
     main_dude._physics.update(main_dude, delta_time_ms);
-    main_dude._quad.update(main_dude.get_x_pos_center(), main_dude.get_y_pos_center(), !main_dude._other.facing_left);
+    main_dude._quad.update(main_dude.get_x_pos_center()+0.25f, main_dude.get_y_pos_center()-0.25f, !main_dude._other.facing_left);
     main_dude._animation.update(main_dude, delta_time_ms);
 
     // Other:

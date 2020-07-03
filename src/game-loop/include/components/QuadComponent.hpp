@@ -16,6 +16,7 @@ public:
     ~QuadComponent();
 
     void update(float pos_x_center, float pos_y_center, bool vertical_flip = false);
+    void set_scale(float x, float y);
 
     template <class T>
     void frame_changed(T frame_index) { _frame_index = static_cast<std::size_t>(frame_index);_frame_changed = true; }
@@ -29,7 +30,7 @@ public:
 
 private:
 
-    const struct
+    struct
     {
         float width;
         float height;

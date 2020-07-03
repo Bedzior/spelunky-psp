@@ -7,6 +7,7 @@ void MainDudeThrowingState::enter(MainDude &main_dude)
     main_dude._animation.start(static_cast<std::size_t>(MainDudeSpritesheetFrames::THROWING_LEFT_0_FIRST),
                                static_cast<std::size_t>(MainDudeSpritesheetFrames::THROWING_LEFT_8_LAST),
                                50, false);
+    main_dude._quad.set_scale(1.f, 1.f);
 }
 
 MainDudeBaseState *MainDudeThrowingState::update(MainDude& main_dude, uint32_t delta_time_ms)

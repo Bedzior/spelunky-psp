@@ -51,3 +51,9 @@ void QuadComponent::update(float pos_x_center, float pos_y_center, bool vertical
     _quad.set_scale(_quad_dimensions.width, _quad_dimensions.height);
     _quad.write();
 }
+
+void QuadComponent::set_scale(float x, float y)
+{
+    _quad_dimensions.width = x;
+    _quad_dimensions.height = y;
+}

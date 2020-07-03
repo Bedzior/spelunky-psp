@@ -4,6 +4,7 @@
 
 void MainDudeLevelSummaryState::enter(MainDude& main_dude)
 {
+    main_dude._quad.set_scale(1.f, 1.f);
     main_dude._physics.set_max_x_velocity(MainDude::DEFAULT_MAX_X_VELOCITY);
     main_dude._animation.start(static_cast<std::size_t>(MainDudeSpritesheetFrames::RUN_LEFT_0_FIRST),
                                static_cast<std::size_t>(MainDudeSpritesheetFrames::RUN_LEFT_5_LAST),

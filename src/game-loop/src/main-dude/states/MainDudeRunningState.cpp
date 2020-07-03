@@ -5,6 +5,7 @@
 void MainDudeRunningState::enter(MainDude &main_dude)
 {
     main_dude._physics.set_max_x_velocity(MainDude::DEFAULT_MAX_X_VELOCITY);
+    main_dude._quad.set_scale(1.f, 1.f);
     if (main_dude._states.current == &main_dude._states.running_looking_up)
     {
         main_dude._animation.resume(static_cast<std::size_t>(MainDudeSpritesheetFrames::RUN_LEFT_0_FIRST),

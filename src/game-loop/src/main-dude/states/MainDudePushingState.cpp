@@ -4,6 +4,7 @@
 
 void MainDudePushingState::enter(MainDude& main_dude)
 {
+    main_dude._quad.set_scale(1.f, 1.f);
     main_dude._animation.start(static_cast<std::size_t>(MainDudeSpritesheetFrames::PUSH_LEFT_0_FIRST),
                                static_cast<std::size_t>(MainDudeSpritesheetFrames::PUSH_LEFT_6_LAST),
                                75, true);
