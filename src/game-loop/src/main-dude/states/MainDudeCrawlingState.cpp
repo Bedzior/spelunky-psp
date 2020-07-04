@@ -52,7 +52,7 @@ MainDudeBaseState *MainDudeCrawlingState::handle_input(MainDude& main_dude, cons
         main_dude._physics.add_velocity(0.0f, -MainDude::JUMP_SPEED);
         return &main_dude._states.jumping;
     }
-    if (!input.cross())
+    if (!input.down())
     {
         return &main_dude._states.running;
     }

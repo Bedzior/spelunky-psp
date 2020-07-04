@@ -27,7 +27,7 @@ MainDudeBaseState *MainDudeRunningState::update(MainDude& main_dude, uint32_t de
     main_dude._animation.update(main_dude, delta_time_ms);
 
     // Other:
-    
+
     if (main_dude._physics.get_x_velocity() == 0.0f)
     {
         return &main_dude._states.standing;
@@ -60,7 +60,7 @@ MainDudeBaseState *MainDudeRunningState::handle_input(MainDude& main_dude, const
         main_dude._physics.add_velocity(0.0f, -MainDude::JUMP_SPEED);
         return &main_dude._states.jumping;
     }
-    if (input.cross())
+    if (input.down())
     {
         return &main_dude._states.crawling;
     }

@@ -28,7 +28,7 @@ MainDudeBaseState *MainDudeRunningLookingUpState::update(MainDude& main_dude, ui
     main_dude._animation.update(main_dude, delta_time_ms);
 
     // Other:
-    
+
     if (main_dude._physics.get_x_velocity() == 0.0f)
     {
         return &main_dude._states.looking_up;
@@ -61,7 +61,7 @@ MainDudeBaseState *MainDudeRunningLookingUpState::handle_input(MainDude& main_du
         main_dude._physics.add_velocity(0.0f, -MainDude::JUMP_SPEED);
         return &main_dude._states.jumping;
     }
-    if (input.cross())
+    if (input.down())
     {
         return &main_dude._states.crawling;
     }
